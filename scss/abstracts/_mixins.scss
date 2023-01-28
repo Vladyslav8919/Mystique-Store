@@ -1,0 +1,150 @@
+@mixin navigation {
+  &-list {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
+  }
+
+  &-item {
+    list-style: none;
+  }
+
+  &-link {
+    color: color(primary);
+    text-decoration: none;
+    font-size: size(sm);
+    transition: all 0.3s;
+
+    &:hover {
+      color: lighten(color(primary), 40%);
+    }
+  }
+}
+
+@mixin flexPosition($justCont: center, $alignIte: center) {
+  display: flex;
+  justify-content: $justCont;
+  align-items: $alignIte;
+}
+
+@mixin footerList {
+  &-heading {
+    font-size: size(lg);
+    color: color(primary);
+  }
+
+  &-item {
+    list-style: none;
+    margin: 1rem 0;
+  }
+
+  &-link {
+    font-size: size(xs);
+    text-decoration: none;
+    color: lighten(color(primary), 15%);
+    transition: color 0.2s;
+
+    &:hover {
+      color: lighten(color(primary), 35%);
+    }
+  }
+}
+
+.contact {
+  &-heading {
+    font-size: size(xl);
+    color: color(primary);
+  }
+
+  &-paragraph {
+    font-size: size(lg);
+    margin: 1rem 0;
+    text-align: center;
+  }
+
+  .inputs-group {
+    display: flex;
+
+    input {
+      padding: 1rem;
+      font-size: size(xs);
+      margin: 1rem 0.5rem;
+      border: 0.1rem solid darken(color(primary), 10%);
+      border-radius: 0.3rem;
+      outline: none;
+      transition: border 0.5s;
+    }
+
+    &:focus:not([type='submit']) {
+      border: 0.1rem solid darken(color(quaternary), 30%);
+    }
+
+    &-text {
+      width: 50%;
+    }
+
+    &-email {
+      width: 60%;
+    }
+    &-btn {
+      width: 40%;
+      color: color(secondary);
+      background-color: lighten(color(primary), 20%);
+      transition: background-color 0.2s;
+
+      &:hover {
+        background-color: color(primary);
+      }
+    }
+  }
+
+  .social-icons {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    box-sizing: border-box;
+
+    &-item {
+      list-style: none;
+    }
+
+    &-link {
+      text-decoration: none;
+      width: 4rem;
+      height: 4rem;
+      border: 0.1rem solid color(primary);
+      border-radius: 50%;
+      @include flexPosition;
+
+      i {
+        font-size: size(md);
+      }
+    }
+  }
+}
+
+@mixin response($breakpoint) {
+  @if ($breakpoint == xl) {
+    @media (max-width: 1200px) {
+      @content;
+    }
+  }
+
+  @if ($breakpoint == lg) {
+    @media (max-width: 1000px) {
+      @content;
+    }
+  }
+
+  @if ($breakpoint == md) {
+    @media (max-width: 760px) {
+      @content;
+    }
+  }
+  @if ($breakpoint == sm) {
+    @media (max-width: 560px) {
+      @content;
+    }
+  }
+}
